@@ -123,6 +123,3 @@ For major changes, please open an issue first to discuss what you would like to 
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
----
-
-This README provides an overview of the project, how to install it, how to use it, and other key details. You can customize the instructions or sections based on your specific setup or additional features in your project.
