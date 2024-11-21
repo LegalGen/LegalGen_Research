@@ -1,6 +1,3 @@
-from jinja2 import Template
-
-# Solidity template with placeholders
 solidity_template = """
 
 """
