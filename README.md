@@ -16,7 +16,6 @@ LegalGen is an advanced framework designed to automate the conversion of legal f
 - [Installation](#installation)
 - [Usage](#usage)
 - [Evaluation](#evaluation)
-- [Contributing](#contributing)
 
 ## Installation
 
