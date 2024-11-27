@@ -37,19 +37,19 @@ contract("g_rs", (accounts) => {
   });
 });
 
-it("should set state to Inactive after termination", async () => {
-  const buyerIndex = 0;
-  await contract.terminateByTransfer(buyerIndex, { from: seller });
-
-  const state = await contract.state();
-  assert.equal(state.toString(), "2", "State should be Inactive after termination"); // Replace "2" with the correct enum value
-});
-
-it("should emit Terminated event upon contract termination", async () => {
-  const buyerIndex = 0;
-  const receipt = await contract.terminateByTransfer(buyerIndex, { from: seller });
-
-  const event = receipt.logs.find(log => log.event === "Terminated");
-  assert(event, "Terminated event should be emitted");
-  assert.equal(event.args.by, seller, "Event should log the correct seller");
-});
+  it("should set state to Inactive after termination", async () => {
+    const buyerIndex = 0;
+    await contract.terminateByTransfer(buyerIndex, { from: seller });
+  
+    const state = await contract.state();
+    assert.equal(state.toString(), "2", "State should be Inactive after termination"); // Replace "2" with the correct enum value
+  });
+  
+  it("should emit Terminated event upon contract termination", async () => {
+    const buyerIndex = 0;
+    const receipt = await contract.terminateByTransfer(buyerIndex, { from: seller });
+  
+    const event = receipt.logs.find(log => log.event === "Terminated");
+    assert(event, "Terminated event should be emitted");
+    assert.equal(event.args.by, seller, "Event should log the correct seller");
+  });
