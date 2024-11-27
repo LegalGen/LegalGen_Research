@@ -34,8 +34,8 @@ contract("g_rs", (accounts) => {
 
     // Add checks here, for example, check if the state is Inactive
     // Example: Check if state has changed to Inactive or if Terminated event was emitted
+   });
   });
-});
 
   it("should set state to Inactive after termination", async () => {
     const buyerIndex = 0;
