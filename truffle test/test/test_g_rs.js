@@ -33,6 +33,14 @@ contract("g_rs", (accounts) => {
    });
   });
 
+  it("should change state to Locked after payment", async () => {
+    const paymentAmount = web3.utils.toWei("1", "ether");
+    await contract.pay_0({ from: buyer, value: paymentAmount });
+  
+    const state = await contract.state();
+    assert.equal(state.toString(), "1", "State should be Locked after payment"); // Replace "1" with the correct enum value
+  });
+
   it("should set state to Inactive after termination", async () => {
     const buyerIndex = 0;
     await contract.terminateByTransfer(buyerIndex, { from: seller });
