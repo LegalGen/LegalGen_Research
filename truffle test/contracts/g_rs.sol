@@ -4,7 +4,7 @@ pragma solidity ^0.8.20;
 // A Stock Purchase Contract template
 import "./OracleTest.sol";
 
-contract g_rs {
+contract ContractTemplate {
 
     address payable public seller;
     address payable[] public buyer;
@@ -18,33 +18,27 @@ contract g_rs {
     uint256 public CloseTime;
     uint256 public OutSideClosingDate;
 
-    uint256[] public pricePayedByBuyer;  // 改为动态数组
-    bool[] public purchaseSellerConfirmed;  // 改为动态数组
-    bool[] public purchaseBuyerConfirmed;  // 改为动态数组
+    uint256[1] public pricePayedByBuyer; 
+
+    bool[1] public purchaseSellerConfirmed; 
+    bool[1] public purchaseBuyerConfirmed;
 
     mapping(string => uint32) private fileHashMap;
 
-    bool[] public terminateSellerConfirmed;  // 改为动态数组
-    bool[] public terminateBuyerConfirmed;  // 改为动态数组
+    bool[1] public terminateSellerConfirmed; 
+    bool[1] public terminateBuyerConfirmed;
 
     enum State { Created, Locked, Release, Transferred, Inactive }
-    State[] public state;  // 改为动态数组
+    State[1] public state;
 
     event Payed(uint256 paymentIndex);
     event Released(uint256 paymentIndex);
     event Terminated(uint256 buyerIndex);
     event TerminatedByOutOfDate();
+    event TerminatedByOthers();
     event Closed();
 
-    address public owner;
-
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Caller is not the owner");
-        _;
-    }
-
     constructor() payable {
-        owner = msg.sender;
         sellerName = "BANK OF AMERICA, N.A.";
         buyerName = ["KAISER ALUMINUM & CHEMICAL CORPORATION"];
         seller = payable(address(0));
@@ -53,13 +47,6 @@ contract g_rs {
         EffectiveTime = 1138233600; 
         CloseTime = 1000; 
         OutSideClosingDate = 1000; 
-
-        state.push(State.Created);  // 初始化状态
-        pricePayedByBuyer.push(0);  // 初始化买方支付金额
-        purchaseSellerConfirmed.push(false);  // 初始化卖方确认
-        purchaseBuyerConfirmed.push(false);  // 初始化买方确认
-        terminateSellerConfirmed.push(false);  // 初始化卖方终止确认
-        terminateBuyerConfirmed.push(false);  // 初始化买方终止确认
     }
 
     function pay_0() public payable {
@@ -160,15 +147,15 @@ contract g_rs {
         }
     }
 
-    function setOracleAddress(address addr) public onlyOwner {
+    function setOracleAddress(address addr) public {
         oracle = OracleTest(addr);
     }
 
-    function setSellerAddress(address payable addr) public onlyOwner {
+    function setSellerAddress(address payable addr) public {
         seller = addr;
     }
 
-    function setBuyerAddress(address payable[] memory addrs) public onlyOwner {
+    function setBuyerAddress(address payable[] memory addrs) public {
         buyer = addrs;
     }
 
@@ -194,4 +181,3 @@ contract g_rs {
         return false;
     }
 }
-
